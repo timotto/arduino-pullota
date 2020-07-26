@@ -162,7 +162,7 @@ int PullOTA::readHeaders(WiFiClient *client, int *contentLength, String *lastMod
 
     if (lowerCaseLine.startsWith("content-type: "))
     {
-      isValidContentType = getHeaderValue(line, "content-type: ") == "application/octet-stream";
+      isValidContentType = getHeaderValue(line, "content-type: ") == "application/octet-stream" || getHeaderValue(line, "content-type: ") == "binary/octet-stream";
     }
 
     if (lowerCaseLine.startsWith("last-modified: "))
