@@ -23,8 +23,9 @@
 class PullOTA 
 {
 public:
+  char *bearerToken;
   PullOTA(WiFiClient *_wifiClient, WiFiClientSecure *_wiFiClientSecure) 
-  : wifiClient(_wifiClient), wiFiClientSecure(_wiFiClientSecure) {}
+  : wifiClient(_wifiClient), wiFiClientSecure(_wiFiClientSecure), bearerToken(NULL) {}
 
   ~PullOTA() {}
   

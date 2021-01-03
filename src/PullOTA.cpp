@@ -60,7 +60,7 @@ int PullOTA::pull(const char *_url, std::function<void(int, int)> _onProgress)
 void PullOTA::buildRequest(struct yuarel *url, char *request, size_t size)
 {
 
-  char authorizationHeader[256];
+  char authorizationHeader[1024];
   buildAuthorizationHeader(url, authorizationHeader, sizeof(authorizationHeader));
 
   char ifModifiedSinceHeader[256];
@@ -83,6 +83,13 @@ void PullOTA::buildRequest(struct yuarel *url, char *request, size_t size)
 void PullOTA::buildAuthorizationHeader(struct yuarel *url, char *authorizationHeader, size_t size)
 {
   snprintf(authorizationHeader, size, "");
+
+  if (bearerToken != NULL)
+  {
+    snprintf(authorizationHeader, size, "Authorization: Bearer %s\r\n", bearerToken);
+    return;
+  }
+
   if (url->username == NULL || url->password == NULL)
   {
     return;
