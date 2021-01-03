@@ -139,7 +139,7 @@ int PullOTA::readHeaders(WiFiClient *client, int *contentLength, String *lastMod
     String lowerCaseLine = line;
     lowerCaseLine.toLowerCase();
 
-    if (lowerCaseLine.startsWith("http/1."))
+    if (lowerCaseLine.startsWith("http/"))
     {
       if (lowerCaseLine.indexOf("304") > 0)
       {
